@@ -43,10 +43,10 @@ find_package(Threads)
 
 if(parallel)
   find_package(MPI COMPONENTS C Fortran REQUIRED)
-  if(NOT DEFINED ENV{MKLROOT})
-    # oneMKL MKLConfig.cmake must be invoked only once
-    include(cmake/lapack.cmake)
-  endif()
+  # if(NOT DEFINED ENV{MKLROOT})
+  #   # oneMKL MKLConfig.cmake must be invoked only once
+  #   include(cmake/lapack.cmake)
+  # endif()
   include(cmake/scalapack.cmake)
 
   set(NUMERIC_LIBS SCALAPACK::SCALAPACK LAPACK::LAPACK)
@@ -142,3 +142,5 @@ include(cmake/summary.cmake)
 include(cmake/install.cmake)
 
 file(GENERATE OUTPUT .gitignore CONTENT "*")
+
+#[[ ]]
