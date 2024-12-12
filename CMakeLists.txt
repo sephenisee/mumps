@@ -61,6 +61,10 @@ if(parallel)
   endif()
 else()
   include(cmake/lapack.cmake)
+  if(openmp)
+    find_package(OpenMP COMPONENTS C Fortran REQUIRED)
+    list(APPEND NUMERIC_LIBS OpenMP::OpenMP_Fortran OpenMP::OpenMP_C)
+  endif()
 endif()
 
 # GEMMT is recommeded in MUMPS User Manual if available
