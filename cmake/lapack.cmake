@@ -13,6 +13,18 @@
 include(ExternalProject)
 include(GNUInstallDirs)
 
+if(given_openblas)
+    file(MAKE_DIRECTORY ${OpenBLAS_INCLUDE_DIRS})
+    if(NOT IS_DIRECTORY ${OpenBLAS_INCLUDE_DIRS})
+      message(FATAL_ERROR "Could not create directory: ${OpenBLAS_INCLUDE_DIRS}")
+    endif()
+
+    add_library(LAPACK::LAPACK INTERFACE IMPORTED GLOBAL)
+    target_include_directories(LAPACK::LAPACK INTERFACE ${OpenBLAS_INCLUDE_DIRS})
+    target_link_libraries(LAPACK::LAPACK INTERFACE ${OpenBLAS_LIBRARIES})
+
+    return()
+endif()
 
 set(lapack_cmake_args
 -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
