@@ -21,7 +21,7 @@ if(given_openblas)
 
     add_library(LAPACK::LAPACK INTERFACE IMPORTED GLOBAL)
     target_include_directories(LAPACK::LAPACK INTERFACE ${OpenBLAS_INCLUDE_DIRS})
-    target_link_libraries(LAPACK::LAPACK INTERFACE ${OpenBLAS_LIBRARIES})
+    target_link_libraries(LAPACK::LAPACK INTERFACE ${OpenBLAS_LIBRARY})
 
     return()
 endif()
